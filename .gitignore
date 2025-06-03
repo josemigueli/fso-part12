@@ -4,3 +4,4 @@ node_modules
 playground/
 mongo_data/
 redis_data/
+hello-front/
