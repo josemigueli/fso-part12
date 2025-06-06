@@ -9,3 +9,9 @@ services:
     ports:
       - 5173:5173
     container_name: todo-frontend-dev
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
