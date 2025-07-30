@@ -1,0 +1,41 @@
+services:
+  app:
+    image: flight-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: flight-frontend
+    volumes:
+      - frontend_dist:/usr/src/app/dist
+    networks:
+      - app-network
+
+  server:
+    image: flight-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: flight-backend
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - frontend_dist:/usr/share/nginx/html:ro
+    ports:
+      - 8080:80
+    container_name: flight-reverse-proxy
+    depends_on:
+      - app
+      - server
+    networks:
+      - app-network
+
+volumes:
+  frontend_dist:
+
+networks:
+  app-network:
+    external: true
