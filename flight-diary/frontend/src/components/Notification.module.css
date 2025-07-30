@@ -1,0 +1,53 @@
+@keyframes fall-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rise-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%) scale(0.8);
+  }
+}
+
+.notiContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+}
+
+.toastContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.toastSubContainer {
+  max-width: 300px;
+  padding: 0 1rem;
+  background-color: var(--main-blue);
+  border-radius: 0.5rem;
+  position: fixed;
+  background-color: var(--secondary-text);
+  color: var(--black);
+}
+
+.animateFallIn {
+  animation: fall-in 0.4s ease-out forwards;
+}
+
+.animateFallOut {
+  animation: rise-out 0.4s ease-in forwards;
+}
